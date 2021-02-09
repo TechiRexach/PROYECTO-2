@@ -16,15 +16,23 @@ function crearTabla(partidos){
 
     for (let i = 0; i < partidos.length; i++){
         const tr = document.createElement("tr");
+
         let tdteam1 = document.createElement("td");
             tdteam1.textContent = partidos[i].homeTeam.name;
             tr.appendChild(tdteam1);
+
         let tdResult = document.createElement("td");
             tdResult.textContent = partidos[i].score.fullTime.homeTeam + " - " + partidos[i].score.fullTime.awayTeam;
             tr.appendChild(tdResult);
+
         let tdteam2 = document.createElement("td");
             tdteam2.textContent = partidos[i].awayTeam.name;
-            tr.appendChild(tdteam2);    
+            tr.appendChild(tdteam2);  
+
+        let tdfecha = document.createElement("td");
+            tdfecha.textContent = partidos[i].utcDate;
+            tr.appendChild(tdfecha);  
+
         tabla.appendChild(tr);
     }
 }
