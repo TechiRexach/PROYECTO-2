@@ -1,4 +1,4 @@
-let calsificacion = {
+let dataClasificacion = {
   filters: {},
   competition: {
     id: 2014,

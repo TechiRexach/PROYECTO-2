@@ -1,5 +1,6 @@
 var local = dataPartidos.matches;
 
+
 function equiposYResultados(partidos){
     for (let i = 0; i < partidos.length; i++){
         console.log(partidos[i].homeTeam.name);
@@ -37,3 +38,4 @@ function crearTabla(partidos){
     }
 }
 crearTabla(local)
+
