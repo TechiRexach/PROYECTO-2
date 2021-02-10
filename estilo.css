@@ -1,0 +1,44 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+.estiloTabla{
+    border: 2px solid black;
+    margin: auto;
+    font-family: sans-serif;
+}
+
+.estiloencabezadotabla{
+    background-color:gray;
+    height: 50px;
+    font-size: large;
+}
+
+td{
+    width: 200px;
+}
+
+.estiloteam{
+    display: grid;
+    grid-row: 1fr 1fr;
+    justify-content: center;
+    width: 200px;
+    height: 80px;
+    padding: 5px;
+}
+
+.imgteam1{
+    height: 40px;
+    justify-self: center;
+}
+
+.imgteam2{
+    height: 40px;
+    justify-self: center;
+}
+
+.tdescudo{
+    width: 80px;
+    text-align: center;
+}
