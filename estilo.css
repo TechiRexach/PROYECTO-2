@@ -194,3 +194,13 @@ body{
        width: 300px;
    }
 }
+
+.leyenda{
+    background-color: #212529;
+    display: flex;
+    flex-direction: row;
+justify-content: space-evenly;
+    color: white;
+    text-align: justify;
+   
+}

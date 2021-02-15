@@ -33,14 +33,22 @@ function crearTabla(standings){
 
         let infoTabla = standings[0].table[i];
 
-        let datosTabla = [escudoimg, 
-            infoTabla.team.name, 
+        let partido1 = standings[0].table[i].form;
+            partido1=partido1.replace(/D/g," 🟡 ");
+            partido1=partido1.replace(/W/g," 🟢 ");
+            partido1=partido1.replace(/L/g," 🔴 ");
+            partido1=partido1.replace(/,/g,"");
+            console.log(partido1)
+
+        let datosTabla = [
             infoTabla.position,
-            infoTabla.playedGames,
+            escudoimg, 
+            infoTabla.team.name, 
+            infoTabla.points,
             infoTabla.won,
-            infoTabla.lost,
             infoTabla.draw,
-            infoTabla.form];
+            infoTabla.lost,
+            partido1];
 
         for (let j = 0; j < datosTabla.length; j++){
             const td = document.createElement("td");
@@ -52,3 +60,17 @@ function crearTabla(standings){
 }
 
 crearTabla(equipos)
+
+
+        // for (let k = 0; k < partido1.length; k++){
+        //     if(partido1 === "D"){
+        //         partido1 = "Empate"
+        //     }
+        //     else if (partido1 === "W"){
+        //         partido1 = "Ganado"
+        //     }
+        //     else{
+        //         partido1 = "Perdido"
+        //     }
+        //     console.log(partido1)
+        // }
