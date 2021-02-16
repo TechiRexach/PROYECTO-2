@@ -2,6 +2,7 @@
 var arrayPartidos = dataPartidos.matches;
 
 // 0. Crear función que va calcular las estadísticas, recibiendo como param el array de partidos
+calcularEstadisticas1(arrayPartidos)
 
 function calcularEstadisticas1(partidos){
     // 1. Crear array vacía (será array de objetos)
@@ -29,10 +30,6 @@ function calcularEstadisticas1(partidos){
 
             let nombreEquipoHome = partidos[i].homeTeam.name;
             let nombreEquipoAway = partidos[i].awayTeam.name;
-
-            
-            
-
 
         // 4. Buscar en la array estadisticas el objeto con el mismo id que el homeTeam del partido
             let equipoEncontradoHome;
@@ -110,87 +107,53 @@ function calcularEstadisticas1(partidos){
 
         Object.assign(estadisticas[k], objetoMedia);
         // console.log(mediaGoles)
+
+        estadisticas.sort((a, b) => b.avg - a.avg)
     }
 
     // 10. Hacer console.log() para ver que todo está correcto.
-        console.log(estadisticas)
-}
-calcularEstadisticas1(arrayPartidos)
-
-
-
-//TABLA 2
-
-function calcularEstadisticas2(partidos){
     
-    let estadisticas2 = [];
-    
-    for (let i = 0; i < partidos.length; i++){
-
-        let partidoStatus = partidos[i].status;
-        if (partidoStatus !== "FINISHED"){
-    
-        }
-        else {
-            
-            let idEquipoAway = partidos[i].awayTeam.id;
-            
-
-            let golesMarcadosPorEquipoHome = partidos[i].score.fullTime.homeTeam;
-            
-           
-            let nombreEquipoAway = partidos[i].awayTeam.name;
-
-            
-            let equipoEncontradoAway;
-
-            for (let k = 0; k < estadisticas2.length; k++){
-                if (idEquipoAway == estadisticas2[k].id){
-                    equipoEncontradoAway = estadisticas2[k];
-                }
-            }
         
-            if (equipoEncontradoAway == undefined){
-                estadisticas2.push({
-                    id: idEquipoAway,
-                    name: nombreEquipoAway,
-                    goals: golesMarcadosPorEquipoHome,
-                    matches: 1,
-                })
-            }
-            
-            else {
-                equipoEncontradoAway.goals = equipoEncontradoAway.goals + golesMarcadosPorEquipoHome;
-                equipoEncontradoAway.matches = equipoEncontradoAway.matches + 1;
-            }
-        }
+        console.log(estadisticas)
 
-    }
-        console.log(estadisticas2)
+        crearTabla1(estadisticas);
 }
-calcularEstadisticas2(arrayPartidos)
 
-
-
-
-
-
-function crearTabla(estadisticas2){
-
-    let table2 = document.getElementById("tbody");
-
-    for (let i = 0; i < partidos.length; i++){
-        const tr = document.createElement("tr");
-        tr.style.backgroundColor = "lightgrey";
-            
-
-            for (let j = 0; j < estadisticas2.length; j++){
-                const td = document.createElement("td");
-                td.append(estadisticas2[j]);
-                tr.appendChild(td);
-                table2.appendChild(tr);   
-        }
-    }
+function crearTabla1(estadisticas){
     
+    let estadisticasTop5 = estadisticas.slice(0, 5)
+    console.log(estadisticasTop5)
+
+    let crearTabla1 = document.getElementById("tabla1");
+
+    for (let i = 0; i < estadisticasTop5.length; i++){
+        const tr = document.createElement("tr");
+
+        let equipos = estadisticasTop5[i].id;
+        console.log(equipos)  
+
+        let escudoimg2 = document.createElement("img");
+            escudoimg2.classList.add("imgteam1clasificacion");
+            escudoimg2.setAttribute("src", "https://crests.football-data.org/" + equipos + ".svg");
+            escudoimg2.setAttribute("alt", "Escudo Equipo");
+
+        let datosTabla1 = [
+            escudoimg2,
+            estadisticasTop5[i].name,
+            estadisticasTop5[i].goals,
+            estadisticasTop5[i].matches,
+            estadisticasTop5[i].avg,
+        ]
+console.log(datosTabla1)
+       
+            for (let j = 0; j < datosTabla1.length; j++){
+                const td = document.createElement("td");
+                td.append(datosTabla1[j]);
+                tr.appendChild(td);
+                crearTabla1.appendChild(tr);   
+        }
+    }
+
 }
-crearTabla(calcularEstadisticas2);
+
+

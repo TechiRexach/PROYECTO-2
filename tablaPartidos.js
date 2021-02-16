@@ -59,3 +59,4 @@ function crearTabla(partidos){
     }
 }
 crearTabla(local);
+
