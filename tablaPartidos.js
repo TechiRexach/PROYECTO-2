@@ -1,11 +1,39 @@
-var local = dataPartidos.matches;
 
-function crearTabla(partidos){
+function hacerFetch(){
+    fetch("https://api.football-data.org/v2/competitions/2014/matches", {
+        method: "GET",
+        headers: {
+            "X-Auth-Token": "fc034140b74241a9aeebc6de63d5af32"
+        }
+        })
+        .then(response => {
+            if(response.ok){
+            return response.json();
+            }
+        }).then(data => {
+            data = data.matches;
+            crearTabla(data);
+
+            let search = document.getElementById("botonEnviar");
+            search.addEventListener("click", function(event){
+                event.preventDefault();
+                filtros(data);
+                })
+            })
+}
+hacerFetch()
+
+
+function crearTabla(data){
+
+    let partidos = data;
+    console.log(partidos)
 
     let tabla = document.getElementById("tabla");
     tabla.innerHTML = "";
 
     for (let i = 0; i < partidos.length; i++){
+
         const tr = document.createElement("tr");
         tr.classList.add("rows")
         tr.style.backgroundColor = "lightgrey";
@@ -37,26 +65,16 @@ function crearTabla(partidos){
             partidos[i].awayTeam.name, 
             escudoimg2,
             fecha.toLocaleString(),
-            ]
+        ]
 
-            for (let j = 0; j < datosPartidos.length; j++){
-                const td = document.createElement("td");
-                td.append(datosPartidos[j]);
-                tr.appendChild(td);
-                tabla.appendChild(tr);  
+        for (let j = 0; j < datosPartidos.length; j++){
+            const td = document.createElement("td");
+            td.append(datosPartidos[j]);
+            tr.appendChild(td);
+            tabla.appendChild(tr);  
         }
-       
     }
-
 }
-crearTabla(local);
-
-
-let search = document.getElementById("botonEnviar");
-search.addEventListener("click", function(event){
-    event.preventDefault();
-    filtros(local);
-})
 
 
 function filtros(partidos){
@@ -81,6 +99,7 @@ let nuevaArrayConDatosFiltrados = partidos.filter(element =>{
     avisoTexto.style.display = "none";
     return  textoEscrito == element.homeTeam.name || textoEscrito == element.awayTeam.name;
 })
+
 
 if(botonSeleccion == null){
 
@@ -125,7 +144,7 @@ let filtradoTotal = nuevaArrayConDatosFiltrados.filter(partidoFiltrado =>{
 })
 
 //(para que lo mande a algun lado)
-console.log(filtradoTotal)
+
 crearTabla(filtradoTotal);
 
 }

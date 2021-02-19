@@ -1,10 +1,31 @@
 
-var arrayPartidos = dataPartidos.matches;
+// var arrayPartidos = dataPartidos.matches;
+
+function hacerFetch(){
+    fetch("https://api.football-data.org/v2/competitions/2014/matches", {
+        method: "GET",
+        headers: {
+            "X-Auth-Token": "fc034140b74241a9aeebc6de63d5af32"
+        }
+        })
+        .then(response => {
+            if(response.ok){
+            return response.json();
+            }
+        }).then(data => {
+            data = data.matches;
+            // crearTabla1(data);
+            calcularEstadisticas1(data)
+            })
+}
+hacerFetch()
 
 // 0. Crear función que va calcular las estadísticas, recibiendo como param el array de partidos
-calcularEstadisticas1(arrayPartidos)
 
-function calcularEstadisticas1(partidos){
+
+function calcularEstadisticas1(data){
+
+    let partidos = data;
     // 1. Crear array vacía (será array de objetos)
     let estadisticas = [];
     

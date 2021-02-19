@@ -1,10 +1,30 @@
 
-var arrayPartidos = dataPartidos.matches;
+// var arrayPartidos = dataPartidos.matches;
 
 
-calcularEstadisticas2(arrayPartidos)
+function hacerFetch(){
+    fetch("https://api.football-data.org/v2/competitions/2014/matches", {
+        method: "GET",
+        headers: {
+            "X-Auth-Token": "fc034140b74241a9aeebc6de63d5af32"
+        }
+        })
+        .then(response => {
+            if(response.ok){
+            return response.json();
+            }
+        }).then(data => {
+            data = data.matches;
+            // crearTabla1(data); OJOOOOOOO, QUE AQUI SOLO QUIERES MOSTRAR LA TABLA FILTRADA
+            calcularEstadisticas2(data)
+            })
+}
+hacerFetch()
 
-function calcularEstadisticas2(partidos){
+
+function calcularEstadisticas2(data){
+
+    let partidos = data;
     
     let estadisticas2 = [];
     
