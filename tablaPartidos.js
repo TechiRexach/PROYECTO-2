@@ -3,6 +3,7 @@ var local = dataPartidos.matches;
 function crearTabla(partidos){
 
     let tabla = document.getElementById("tabla");
+    tabla.innerHTML = "";
 
     for (let i = 0; i < partidos.length; i++){
         const tr = document.createElement("tr");
@@ -66,32 +67,39 @@ console.log(textoEscrito);
 let botonSeleccion = document.querySelector("input[name=estadoPartido]:checked");
 console.log(botonSeleccion)
 
+let avisoTexto = document.getElementById("alertaTexto");
+
+let avisoEstado = document.getElementById("alertaEstado");
 
 if(textoEscrito == ""){
-    alert("Por favor, ingresa el nombre de un equipo")
-    console.log(partidos);
-return partidos;
+    avisoTexto.style.display = "block";
+    crearTabla(partidos);
+    return;
 }
 
 let nuevaArrayConDatosFiltrados = partidos.filter(element =>{
+    avisoTexto.style.display = "none";
     return  textoEscrito == element.homeTeam.name || textoEscrito == element.awayTeam.name;
 })
 
-// let prueba = [nuevaArrayConDatosFiltrados].includes(textoEscrito);
-// console.log(prueba)
-// textoEscrito.includes(nuevaArrayConDatosFiltrados);
-
-
 if(botonSeleccion == null){
-    alert("Por favor, selecciona una opción")
-    console.log(nuevaArrayConDatosFiltrados)
+
+    avisoEstado.style.display = "block";
+
+    crearTabla(nuevaArrayConDatosFiltrados);
+
     return nuevaArrayConDatosFiltrados;
-    }
+}
 
 let filtradoTotal = nuevaArrayConDatosFiltrados.filter(partidoFiltrado =>{
+
+    avisoEstado.style.display = "none";
+
     if (partidoFiltrado.score.winner == "DRAW" && botonSeleccion.value == "Empatado"){
         return  true;
     }
+    
+
     if (partidoFiltrado.score.winner == null && botonSeleccion.value == "Pendiente"){
         return  true;
     }
@@ -115,34 +123,6 @@ let filtradoTotal = nuevaArrayConDatosFiltrados.filter(partidoFiltrado =>{
     }
 
 })
-
-
-function esconderTabla(table) {
-    var input, filter, table, tr, td, i, textoEscrito;
-
-    input = document.getElementById("textoBuscador");
-
-    filter = input.value.toUpperCase();
-
-    table = document.getElementById("tabla");
-
-    tr = table.getElementsByTagName("tr");
-
-    for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[0];
-      if (td) {
-          textoEscrito = td.textContent || td.innerText;
-            if (textoEscrito.indexOf(filter) > -1) {
-            tr[i].style.display = "";
-            } else {
-          tr[i].style.display = "none";
-        }
-      }       
-    }
-  }
-esconderTabla(local)
-
-
 
 //(para que lo mande a algun lado)
 console.log(filtradoTotal)

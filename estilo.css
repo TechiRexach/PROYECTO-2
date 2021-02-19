@@ -241,3 +241,11 @@ width: 100%;
         margin: auto;
     }
 }
+
+#alertaTexto{
+    display: none;
+}
+
+#alertaEstado{
+    display: none;
+}
