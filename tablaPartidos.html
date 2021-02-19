@@ -33,8 +33,29 @@
           </div>
         </div>
       </nav>
+
+      <form action="">
+        <div class="filtros container table-responsive">
+        <div>
+          <input class="filtros1" type="text" name="textoBuscador" id="textoBuscador" placeholder="Buscar..." ></input>
+        </div>
+        <div id="eligeEstadoPartido" class="filtros2">
+          <input type="radio" name="estadoPartido" id="partidoGanado" value="Ganado" class="botonradio">
+          <label for="partidoGanado">Ganado</label>
+          <input type="radio" name="estadoPartido" id="partidoEmpatado" value="Empatado" class="botonradio">
+          <label for="partidoEmpatado">Empatado</label>
+          <input type="radio" name="estadoPartido" id="partidoPerdido" value="Perdido" class="botonradio">
+          <label for="partidoPerdido">Perdido</label>
+          <input type="radio" name="estadoPartido" id="partidoPendiente" value="Pendiente" class="botonradio">
+          <label for="partidoPendiente">Pendiente</label>
+        </div>
+        <div id="enviaSeleccion">
+          <button id="botonEnviar">Buscar</button>
+        </div>
+      </div>
+    </form>
     
-      <div class="container table-responsive">
+    <div class="container table-responsive">
     <table class="table table-dark table-sm" id="table">
         <thead>
             <tr>
@@ -47,10 +68,9 @@
             </tr>
         </thead>
         <tbody id="tabla">
-    
         </tbody>
     </table>
-  </div>
+    </div>
 
     <footer class="footer">
       <div class="footerimages">

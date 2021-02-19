@@ -15,11 +15,6 @@ thead{
     margin-top: 15px;
 }
 
-/* #table1, #table2{
-    background-color: #212529;
-    margin-top: 15px;
-} */
-
 td{
     text-align: center;
     vertical-align: middle;
@@ -204,8 +199,45 @@ body{
     background-color: #212529;
     display: flex;
     flex-direction: row;
-justify-content: space-evenly;
+    justify-content: space-evenly;
     color: white;
     text-align: justify;
    
+}
+
+.filtros{
+    text-align: center;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    margin: auto;
+    margin-top: 15px
+}
+.filtros1{
+width: 100%;
+}
+
+.filtros2{
+    margin: auto;
+}
+
+@media screen and (max-width: 667px){
+    .filtros{
+        width: 80%;
+        height: 280px;
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+    .filtros1{
+        margin-top: 15px;
+    }
+    .filtros2{
+        margin-bottom: 15px;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        text-align: center;
+    }
+   .botonradio{
+        margin: auto;
+    }
 }

@@ -156,4 +156,3 @@ console.log(datosTabla1)
 
 }
 
-
