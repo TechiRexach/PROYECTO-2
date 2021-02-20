@@ -13,10 +13,14 @@ function hacerFetch(){
             return response.json();
             }
         }).then(data => {
+
+            document.getElementById("loading").style.display = "none";
             data = data.matches;
-            // crearTabla1(data);
             calcularEstadisticas1(data)
-            })
+            }).catch(error =>{
+            console.log(error);
+            alert("ERROR al cargar datos");
+      })
 }
 hacerFetch()
 

@@ -14,10 +14,14 @@ function hacerFetch(){
             return response.json();
             }
         }).then(data => {
+            document.getElementById("loading2").style.display = "none";
             data = data.matches;
             // crearTabla1(data); OJOOOOOOO, QUE AQUI SOLO QUIERES MOSTRAR LA TABLA FILTRADA
             calcularEstadisticas2(data)
-            })
+            }).catch(error =>{
+                console.log(error);
+                alert("ERROR al cargar datos");
+          })
 }
 hacerFetch()
 

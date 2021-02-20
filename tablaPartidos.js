@@ -11,6 +11,9 @@ function hacerFetch(){
             return response.json();
             }
         }).then(data => {
+
+            document.getElementById("loading").style.display = "none";
+            
             data = data.matches;
             crearTabla(data);
 
@@ -19,9 +22,13 @@ function hacerFetch(){
                 event.preventDefault();
                 filtros(data);
                 })
-            })
+            }).catch(error =>{
+                console.log(error);
+                alert("ERROR al cargar datos");
+          })
 }
 hacerFetch()
+
 
 
 function crearTabla(data){
@@ -50,6 +57,7 @@ function crearTabla(data){
 
         let fecha = new Date (partidos[i].utcDate);
 
+
         let resultados = partidos[i].score.fullTime.homeTeam + " - " + partidos[i].score.fullTime.awayTeam;
             if (resultados === "null - null"){
                 resultados = "Pendiente";
@@ -67,11 +75,13 @@ function crearTabla(data){
             fecha.toLocaleString(),
         ]
 
+
         for (let j = 0; j < datosPartidos.length; j++){
             const td = document.createElement("td");
             td.append(datosPartidos[j]);
             tr.appendChild(td);
             tabla.appendChild(tr);  
+            
         }
     }
 }

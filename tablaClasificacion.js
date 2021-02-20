@@ -14,11 +14,16 @@ function hacerFetch(){
                 return response.json();
                 }
             }).then(data => {
+
+                document.getElementById("loading").style.display = "none";
                 // let prueba = data.standings[0].table
                 // console.log(prueba)
                 crearTabla(data);
         
-            })
+            }).catch(error =>{
+                console.log(error);
+                alert("ERROR al cargar datos");
+          })
         
     
         // function cargaDatosApiClasificacion(clasificacion){
