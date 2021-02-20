@@ -9,46 +9,47 @@
     <title>ESTADISTICAS LA LIGA</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="homepage.html">
-            <img class= "logoLiga" src="https://assets.laliga.com/assets/logos/laliga-v-negativo/laliga-v-negativo-300x300.png">
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="tablaClasificacion.html">Clasificación</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="tablaPartidos.html">Partidos</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="tablasMedias.html">Estadisticas</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
 
-      <div id="loading">
+  <nav class="navbar navbar-expand-lg navbar-dark navbarcolor">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="homepage.html">
+        <img class= "logoLiga" src="https://assets.laliga.com/assets/logos/laliga-v-negativo/laliga-v-negativo-300x300.png">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="tablaClasificacion.html">Clasificación</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="tablaPartidos.html">Partidos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="tablasMedias.html">Estadisticas</a>
+          </li>
+        </ul>
       </div>
+    </div>
+  </nav>
 
-<div class="container table-responsive">
-    <table class="table table-dark table-sm" id="table">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Equipo</th>
-                <th>Goles</th>
-                <th>Partidos</th>
-                <th>Media goles a favor</th>
-            </tr>
-        </thead>
-        <tbody id="tabla1">
-        </tbody>
+  <div id="loading">
+  </div>
+
+  <div class="container table-responsive">
+    <table class="table colorTabla table-sm" id="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Equipo</th>
+          <th>Goles</th>
+          <th>Partidos</th>
+          <th>Media goles</th>
+        </tr>
+      </thead>
+      <tbody id="tabla1" class="colorTabla1">
+      </tbody>
     </table>
   </div>
 
@@ -56,31 +57,37 @@
   </div>
   
   <div class="container table-responsive">
-    <table class="table table-dark table-sm" id="table">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Equipo</th>
-                <th>Goles en contra como visitante</th>
-                <th>Partidos</th>
-            </tr>
-        </thead>
-        <tbody id="tabla2">
-        </tbody>
+    <table class="table colorTabla table-sm" id="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Equipo</th>
+          <th>Goles en contra como visitante</th>
+          <th>Partidos</th>
+        </tr>
+      </thead>
+      <tbody id="tabla2" class="colorTabla2">
+      </tbody>
     </table>
   </div>
 
 
 
-    <footer class="footer">
-      <div class="footerimages">
-        <img class= "instagram" src="/IMAGES/instagram.png" href= "https://www.instagram.com/laliga/?hl=es">
-        <img class= "youtube" src="/IMAGES/youtube.png" href= "https://www.youtube.com/user/laliga">
-        <img class= "facebook" src="/IMAGES/facebook.png" href= "https://www.facebook.com/LaLiga">
-      </div>
-      <div class="textofooter">
-        © LaLiga 2021
-      </div>
+  <footer class="footer">
+    <div class="footerimages">
+      <a href="https://www.instagram.com/laliga/?hl=es">
+      <img class= "instagram" src="/IMAGES/instagram.png">
+      </a>
+      <a href="https://www.youtube.com/user/laliga">
+        <img class= "youtube" src="/IMAGES/youtube.png">
+      </a>
+      <a href="https://www.facebook.com/LaLiga">
+        <img class= "facebook" src="/IMAGES/facebook.png">
+      </a>
+    </div>
+    <div class="textofooter">
+      © LaLiga 2021
+    </div>
   </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>

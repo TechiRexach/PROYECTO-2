@@ -1,4 +1,3 @@
-
 function hacerFetch(){
     fetch("https://api.football-data.org/v2/competitions/2014/matches", {
         method: "GET",
@@ -22,19 +21,17 @@ function hacerFetch(){
                 event.preventDefault();
                 filtros(data);
                 })
-            }).catch(error =>{
+        }).catch(error =>{
                 console.log(error);
                 alert("ERROR al cargar datos");
           })
 }
 hacerFetch()
 
-
-
 function crearTabla(data){
 
     let partidos = data;
-    console.log(partidos)
+
 
     let tabla = document.getElementById("tabla");
     tabla.innerHTML = "";
@@ -42,8 +39,7 @@ function crearTabla(data){
     for (let i = 0; i < partidos.length; i++){
 
         const tr = document.createElement("tr");
-        tr.classList.add("rows")
-        tr.style.backgroundColor = "lightgrey";
+        tr.style.backgroundColor = "#c9b0a1";
 
         let escudoimg = document.createElement("img");
             escudoimg.classList.add("imgteam1partidos");
@@ -56,7 +52,6 @@ function crearTabla(data){
             escudoimg2.setAttribute("alt", "Escudo Equipo");  
 
         let fecha = new Date (partidos[i].utcDate);
-
 
         let resultados = partidos[i].score.fullTime.homeTeam + " - " + partidos[i].score.fullTime.awayTeam;
             if (resultados === "null - null"){
@@ -75,13 +70,11 @@ function crearTabla(data){
             fecha.toLocaleString(),
         ]
 
-
         for (let j = 0; j < datosPartidos.length; j++){
             const td = document.createElement("td");
             td.append(datosPartidos[j]);
             tr.appendChild(td);
             tabla.appendChild(tr);  
-            
         }
     }
 }
@@ -89,17 +82,23 @@ function crearTabla(data){
 
 function filtros(partidos){
 
-let textoEscrito = document.getElementById("textoBuscador").value;
-console.log(textoEscrito);
+let desplegable = document.getElementById("select");
+
+let indiceSelecionado = desplegable.selectedIndex; //posicion en el desplegable, empieza en 0
+
+let opcionSeleccionada = desplegable.options[indiceSelecionado]; //id de equipo
+
+let equipoSelecionado = opcionSeleccionada.text; //texto coincide, preguntar por como se hace con ID
+
+let textoEscrito = equipoSelecionado;
 
 let botonSeleccion = document.querySelector("input[name=estadoPartido]:checked");
-console.log(botonSeleccion)
 
 let avisoTexto = document.getElementById("alertaTexto");
 
 let avisoEstado = document.getElementById("alertaEstado");
 
-if(textoEscrito == ""){
+if(textoEscrito == "EQUIPOS"){
     avisoTexto.style.display = "block";
     crearTabla(partidos);
     return;
@@ -109,7 +108,6 @@ let nuevaArrayConDatosFiltrados = partidos.filter(element =>{
     avisoTexto.style.display = "none";
     return  textoEscrito == element.homeTeam.name || textoEscrito == element.awayTeam.name;
 })
-
 
 if(botonSeleccion == null){
 
@@ -127,7 +125,6 @@ let filtradoTotal = nuevaArrayConDatosFiltrados.filter(partidoFiltrado =>{
     if (partidoFiltrado.score.winner == "DRAW" && botonSeleccion.value == "Empatado"){
         return  true;
     }
-    
 
     if (partidoFiltrado.score.winner == null && botonSeleccion.value == "Pendiente"){
         return  true;
@@ -140,8 +137,8 @@ let filtradoTotal = nuevaArrayConDatosFiltrados.filter(partidoFiltrado =>{
         if (textoEscrito == partidoFiltrado.awayTeam.name && partidoFiltrado.score.winner == "AWAY_TEAM"){
             return true;
         }
-    
     }
+
     if (botonSeleccion.value == "Perdido"){
         if (textoEscrito == partidoFiltrado.homeTeam.name && partidoFiltrado.score.winner == "AWAY_TEAM"){
             return true;

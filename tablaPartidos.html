@@ -10,89 +10,115 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="homepage.html">
-            <img class= "logoLiga" src="https://assets.laliga.com/assets/logos/laliga-v-negativo/laliga-v-negativo-300x300.png">
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="tablaClasificacion.html">Clasificación</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="tablaPartidos.html">Partidos</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="tablasMedias.html">Estadisticas</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
-      <form action="">
-        <div class="filtros container table-responsive">
-        <div>
-          <input class="filtros1" type="text" name="textoBuscador" id="textoBuscador" placeholder="Buscar..." ></input>
-        </div>
-        <div class="alert alert-warning" id="alertaTexto" role="alert">
-          Introduce el nombre de un equipo:
-        </div>
-        <div id="eligeEstadoPartido" class="filtros2">
-          <input type="radio" name="estadoPartido" id="partidoGanado" value="Ganado" class="botonradio">
-          <label for="partidoGanado">Ganado</label>
-          <input type="radio" name="estadoPartido" id="partidoEmpatado" value="Empatado" class="botonradio">
-          <label for="partidoEmpatado">Empatado</label>
-          <input type="radio" name="estadoPartido" id="partidoPerdido" value="Perdido" class="botonradio">
-          <label for="partidoPerdido">Perdido</label>
-          <input type="radio" name="estadoPartido" id="partidoPendiente" value="Pendiente" class="botonradio">
-          <label for="partidoPendiente">Pendiente</label>
-        </div>
-        <div class="alert alert-warning" id="alertaEstado" role="alert">
-          Escoge una opción:
-        </div>
-        <div id="enviaSeleccion">
-          <button id="botonEnviar">Buscar</button>
-        </div>
+  <nav class="navbar navbar-expand-lg navbar-dark navbarcolor">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="homepage.html">
+        <img class= "logoLiga" src="https://assets.laliga.com/assets/logos/laliga-v-negativo/laliga-v-negativo-300x300.png">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="tablaClasificacion.html">Clasificación</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="tablaPartidos.html">Partidos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="tablasMedias.html">Estadisticas</a>
+          </li>
+        </ul>
       </div>
-    </form>
-
-    <div id="loading">
     </div>
+  </nav>
+
+  <form action="">
+    <div class="filtros container table-responsive">
+      <div>
+        <div class="avisoDesplegable">Escoge un equipo:</div>
+        <select name="seleccion equipos" id="select" class="desplegable">
+          <option></option>
+          <option value="77">Athletic Club</option>
+          <option value="79">CA Osasuna</option>
+          <option value="264">Cádiz CF</option>
+          <option value="83">Club Atlético de Madrid</option>
+          <option value="263">Deportivo Aláves</option>
+          <option value="285">Elche CF</option>
+          <option value="81">FC Barcelona</option>
+          <option value="82">Getafe CF</option>
+          <option value="83">Granada CF</option>
+          <option value="88">Levante UD</option>
+          <option value="558">RC Celta de Vigo</option>
+          <option value="90">Real Betis Balonpie</option>
+          <option value="86">Real Madrid CF</option>
+          <option value="92">Real Sociedad de Fútbol</option>
+          <option value="250">Real Valladolid CF</option>
+          <option value="278">SD Eibar</option>
+          <option value="299">SD Huesca</option>
+          <option value="559">Sevilla FC</option>
+          <option value="95">Valencia CF</option>
+          <option value="94">Villareal CF</option>
+        </select>
+      </div>
+      <div class="alert alert-warning" id="alertaTexto" role="alert">
+        Por favor, selecciona el nombre de un equipo.
+      </div>
+      <div id="eligeEstadoPartido" class="filtros2">
+        <input type="radio" name="estadoPartido" id="partidoGanado" value="Ganado" class="botonradio">
+          <label for="partidoGanado">Ganados</label>
+        <input type="radio" name="estadoPartido" id="partidoEmpatado" value="Empatado" class="botonradio">
+          <label for="partidoEmpatado">Empatados</label>
+        <input type="radio" name="estadoPartido" id="partidoPerdido" value="Perdido" class="botonradio">
+          <label for="partidoPerdido">Perdidos</label>
+        <input type="radio" name="estadoPartido" id="partidoPendiente" value="Pendiente" class="botonradio">
+          <label for="partidoPendiente">Pendientes</label>
+      </div>
+      <div class="alert alert-warning" id="alertaEstado" role="alert">
+        Escoge una opción:
+      </div>
+      <div id="enviaSeleccion">
+        <button id="botonEnviar">Buscar</button>
+      </div>
+    </div>
+  </form>
+
+  <div id="loading">
+  </div>
     
-    <div class="container table-responsive">
-    <table class="table table-dark table-sm" id="table">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Equipo Local</th>
-                <th>Resultado</th>
-                <th>Equipo Visitante</th>
-                <th></th>
-                <th>Fecha y hora</th>
-            </tr>
-        </thead>
-
-       
-
-        <tbody id="tabla">
-        </tbody>
+  <div class="container table-responsive">
+    <table class="table colorTabla table-sm" id="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Equipo Local</th>
+          <th>Resultado</th>
+          <th>Equipo Visitante</th>
+          <th></th>
+          <th>Fecha y hora</th>
+        </tr>
+      </thead>
+      <tbody id="tabla">
+      </tbody>
     </table>
-    </div>
+  </div>
 
-    <footer class="footer">
-      <div class="footerimages">
-        <img class= "instagram" src="/IMAGES/instagram.png" href= "https://www.instagram.com/laliga/?hl=es">
-        <img class= "youtube" src="/IMAGES/youtube.png" href= "https://www.youtube.com/user/laliga">
-        <img class= "facebook" src="/IMAGES/facebook.png" href= "https://www.facebook.com/LaLiga">
-      </div>
-      <div class="textofooter">
-        © LaLiga 2021
-      </div>
+  <footer class="footer">
+    <div class="footerimages">
+      <a href="https://www.instagram.com/laliga/?hl=es">
+      <img class= "instagram" src="/IMAGES/instagram.png">
+      </a>
+      <a href="https://www.youtube.com/user/laliga">
+        <img class= "youtube" src="/IMAGES/youtube.png">
+      </a>
+      <a href="https://www.facebook.com/LaLiga">
+        <img class= "facebook" src="/IMAGES/facebook.png">
+      </a>
+    </div>
+    <div class="textofooter">
+      © LaLiga 2021
+    </div>
   </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
