@@ -35,6 +35,10 @@ td{
     vertical-align: middle;
 }
 
+p{
+    margin:auto;
+}
+
 .footer{
     background-color: #DA7635;
     margin-top: 15px;
@@ -95,6 +99,13 @@ td{
     .facebook{
         height: 20px;
     }
+    th{
+        font-size: small;
+        vertical-align: middle;
+    }
+    td{
+        font-size: x-small;
+    }
 }
 
 /* CLASIFICACION */
@@ -120,6 +131,10 @@ td{
     }
     .leyenda{
         width: 100%;
+        font-size: x-small;
+    }
+    .ultimosresultados{
+        font-size: x-small;
     }
 }
 
@@ -251,9 +266,8 @@ td{
     color: #212529;
 }
 
-#botonEnviar{
-    border-radius: 15px;
-    background-color: #f48c06;
+.negrita{
+    font-weight: bold;
 }
 
 .imgteam1partidos{
@@ -274,40 +288,73 @@ td{
     margin: auto;
     margin-top: 15px
 }
-.filtros1{
-width: 100%;
-}
 
 .filtros2{
+    margin: auto;
+    display: grid;
+    grid-template-columns: 0.7fr 1fr 1fr 1fr 1fr;
+    width: 40%;
+}
+
+.botonesEnvioyReset{
+    display: grid;
+    height: 50%;
+    grid-template-columns: 0.2fr 0.2fr;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.botonEnviar{
+    border-radius: 5px;
+    width: 130px;
+    margin: auto;
+    background-color: #f0ae62;
+}
+
+.botonReset{
+    border-radius: 5px;
+    font-size: smaller;
+    width: 130px;
     margin: auto;
 }
 
 @media screen and (max-width: 667px){
-
+    #alertaTexto{
+        width: 210px;
+    }
+    #alertaEstado{
+        width: 210px;
+        height: min-content;
+        margin: auto;
+    }
     .imgteam1partidos{
         width: 40px;
     }
     .imgteam2partidos{
         width: 40px;
     }
-
     .filtros{
         width: 80%;
-        height: 280px;
+        height: 400px;
         display: grid;
-        grid-template-rows: 1fr 1fr 1fr;
-    }
-    .filtros1{
-        margin-top: 15px;
+        grid-template-rows: 0.2fr 0.1fr 0fr;
     }
     .filtros2{
-        margin-bottom: 15px;
         display: grid;
-        grid-template-rows: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: 1fr;
         text-align: center;
+        margin-top: 5px;
+        width: 100%;
     }
-   .botonradio{
-        margin: auto;
+    .botonesEnvioyReset{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        margin-top: 10px;
+    }
+    .botonReset{
+        margin-top: 15px;
     }
 }
 
@@ -344,3 +391,5 @@ width: 100%;
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
+
+

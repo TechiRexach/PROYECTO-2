@@ -28,10 +28,9 @@ function hacerFetch(){
 }
 hacerFetch()
 
-function crearTabla(data){
+function crearTabla(data, equipoSeleccionado){
 
     let partidos = data;
-
 
     let tabla = document.getElementById("tabla");
     tabla.innerHTML = "";
@@ -52,6 +51,7 @@ function crearTabla(data){
             escudoimg2.setAttribute("alt", "Escudo Equipo");  
 
         let fecha = new Date (partidos[i].utcDate);
+        console.log(fecha.toLocaleDateString())
 
         let resultados = partidos[i].score.fullTime.homeTeam + " - " + partidos[i].score.fullTime.awayTeam;
             if (resultados === "null - null"){
@@ -61,11 +61,23 @@ function crearTabla(data){
                 resultados.textContent = partidos[i].score.fullTime.homeTeam + " - " + partidos[i].score.fullTime.awayTeam;
             }
 
+        let equipoLocal = document.createElement("p");
+            equipoLocal.innerHTML = partidos[i].homeTeam.name;
+            if (partidos[i].homeTeam.name == equipoSeleccionado){
+                equipoLocal.classList.add("negrita")
+            }
+
+        let equipoVisitante = document.createElement("p");
+            equipoVisitante.innerHTML = partidos[i].awayTeam.name;
+            if (partidos[i].awayTeam.name == equipoSeleccionado){
+                equipoVisitante.classList.add("negrita")
+            }
+
         let datosPartidos = [
             escudoimg,
-            partidos[i].homeTeam.name, 
+            equipoLocal, 
             resultados,
-            partidos[i].awayTeam.name, 
+            equipoVisitante, 
             escudoimg2,
             fecha.toLocaleString(),
         ]
@@ -79,80 +91,100 @@ function crearTabla(data){
     }
 }
 
-
 function filtros(partidos){
 
-let desplegable = document.getElementById("select");
+    let desplegable = document.getElementById("select");
 
-let indiceSelecionado = desplegable.selectedIndex; //posicion en el desplegable, empieza en 0
+    let indiceSelecionado = desplegable.selectedIndex; //posicion en el desplegable, empieza en 0
 
-let opcionSeleccionada = desplegable.options[indiceSelecionado]; //id de equipo
+    let opcionSeleccionada = desplegable.options[indiceSelecionado]; //id de equipo
 
-let equipoSelecionado = opcionSeleccionada.text; //texto coincide, preguntar por como se hace con ID
+    let equipoSelecionado = opcionSeleccionada.text; //texto coincide, preguntar por como se hace con ID
 
-let textoEscrito = equipoSelecionado;
+    let equipoDesplegable = equipoSelecionado;
 
-let botonSeleccion = document.querySelector("input[name=estadoPartido]:checked");
+    let botonSeleccion = document.querySelector("input[name=estadoPartido]:checked");
 
-let avisoTexto = document.getElementById("alertaTexto");
+    let avisoTexto = document.getElementById("alertaTexto");
 
-let avisoEstado = document.getElementById("alertaEstado");
+    let avisoEstado = document.getElementById("alertaEstado");
 
-if(textoEscrito == "EQUIPOS"){
-    avisoTexto.style.display = "block";
+    if(equipoDesplegable == ""){
+        avisoTexto.style.display = "block";
+        crearTabla(partidos);
+        return;
+    }
+
+    let nuevaArrayConDatosFiltrados = partidos.filter(element =>{
+
+        avisoTexto.style.display = "none";
+
+        return  equipoDesplegable == element.homeTeam.name || equipoDesplegable == element.awayTeam.name;
+    })
+
+    if(botonSeleccion == null){
+        avisoEstado.style.display = "block";
+        crearTabla(nuevaArrayConDatosFiltrados);
+        return nuevaArrayConDatosFiltrados;
+    }
+
+    let filtradoTotal = nuevaArrayConDatosFiltrados.filter(partidoFiltrado =>{
+        
+        avisoEstado.style.display = "none";
+
+        if (botonSeleccion.value == "Todos"){
+            if (equipoDesplegable == partidoFiltrado.homeTeam.name){
+            return true;
+        }
+            if (equipoDesplegable == partidoFiltrado.awayTeam.name){
+                return true;
+            }
+        }
+
+        if (partidoFiltrado.score.winner == "DRAW" && botonSeleccion.value == "Empatado"){
+            return  true;
+        }
+
+        if (partidoFiltrado.score.winner == null && botonSeleccion.value == "Pendiente"){
+            return  true;
+        }
+
+        if (botonSeleccion.value == "Ganado"){
+            if (equipoDesplegable == partidoFiltrado.homeTeam.name && partidoFiltrado.score.winner == "HOME_TEAM"){
+            return true;
+        }
+            if (equipoDesplegable == partidoFiltrado.awayTeam.name && partidoFiltrado.score.winner == "AWAY_TEAM"){
+                return true;
+            }
+        }
+
+        if (botonSeleccion.value == "Perdido"){
+            if (equipoDesplegable == partidoFiltrado.homeTeam.name && partidoFiltrado.score.winner == "AWAY_TEAM"){
+                return true;
+            }
+            if (equipoDesplegable == partidoFiltrado.awayTeam.name && partidoFiltrado.score.winner == "HOME_TEAM"){
+                return true;
+            }
+        } 
+    })
+
+    let reset = document.getElementById("botonReset");
+    reset.addEventListener("click", function(){
+    equipoDesplegable == opcionSeleccionada[0];
+    botonSeleccion == null;
     crearTabla(partidos);
-    return;
-}
+    })
 
-let nuevaArrayConDatosFiltrados = partidos.filter(element =>{
-    avisoTexto.style.display = "none";
-    return  textoEscrito == element.homeTeam.name || textoEscrito == element.awayTeam.name;
-})
-
-if(botonSeleccion == null){
-
-    avisoEstado.style.display = "block";
-
-    crearTabla(nuevaArrayConDatosFiltrados);
-
-    return nuevaArrayConDatosFiltrados;
-}
-
-let filtradoTotal = nuevaArrayConDatosFiltrados.filter(partidoFiltrado =>{
-
-    avisoEstado.style.display = "none";
-
-    if (partidoFiltrado.score.winner == "DRAW" && botonSeleccion.value == "Empatado"){
-        return  true;
-    }
-
-    if (partidoFiltrado.score.winner == null && botonSeleccion.value == "Pendiente"){
-        return  true;
-    }
-
-    if (botonSeleccion.value == "Ganado"){
-       if (textoEscrito == partidoFiltrado.homeTeam.name && partidoFiltrado.score.winner == "HOME_TEAM"){
-           return true;
-       }
-        if (textoEscrito == partidoFiltrado.awayTeam.name && partidoFiltrado.score.winner == "AWAY_TEAM"){
-            return true;
-        }
-    }
-
-    if (botonSeleccion.value == "Perdido"){
-        if (textoEscrito == partidoFiltrado.homeTeam.name && partidoFiltrado.score.winner == "AWAY_TEAM"){
-            return true;
-        }
-         if (textoEscrito == partidoFiltrado.awayTeam.name && partidoFiltrado.score.winner == "HOME_TEAM"){
-             return true;
-         }
-    }
-
-})
-
-//(para que lo mande a algun lado)
-
-crearTabla(filtradoTotal);
+    crearTabla(filtradoTotal, equipoDesplegable)
 
 }
 
+  
+// for(let i = 0; i < filtradoTotal.length; i++){
+
+//     if(partidoFiltrado.awayTeam.name || partidoFiltrado.homeTeam.name == textoEscrito){
+        
+//         let highlights = textoEscrito;
+//         console.log(highlights)
+//     }
+// }
