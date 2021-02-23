@@ -72,6 +72,9 @@ function crearTabla(partidos, equipoDesplegable){
                 equipoVisitante.classList.add("negrita")
             }
 
+        let jornadas = partidos[i].matchday;
+        console.log(jornadas)
+
         let datosPartidos = [
             escudoimg,
             equipoLocal, 
@@ -79,6 +82,7 @@ function crearTabla(partidos, equipoDesplegable){
             equipoVisitante, 
             escudoimg2,
             fecha.toLocaleString(),
+            jornadas
         ]
 
         for (let j = 0; j < datosPartidos.length; j++){
@@ -92,11 +96,9 @@ function crearTabla(partidos, equipoDesplegable){
 
 function filtros(partidos){
 
-   let equipoDesplegable = document.getElementById("desplegable");
-   console.log(equipoDesplegable)
+    let equipoDesplegable = document.getElementById("desplegable");
 
-   let equipoSeleccionado = equipoDesplegable.options[equipoDesplegable.selectedIndex].text;
-   console.log(equipoSeleccionado)
+    let equipoSeleccionado = equipoDesplegable.options[equipoDesplegable.selectedIndex].text;
 
     let botonSeleccion = document.querySelector("input[name=estadoPartido]:checked");
 
@@ -104,7 +106,7 @@ function filtros(partidos){
 
     let avisoEstado = document.getElementById("alertaEstado");
 
-    if(equipoSeleccionado == ""){
+    if(equipoSeleccionado == "EQUIPOS"){
         avisoTexto.style.display = "block";
         crearTabla(partidos);
         return;
@@ -180,45 +182,37 @@ function crearDesplegable(data){
 
     let partidos = data;
 
-    let datosDesplegable = [];
+    let listaEquipos = [];
     
     for (let i = 0; i < partidos.length; i++){
-
-        let idEquipo = partidos[i].awayTeam.id;
             
         let nombreEquipo = partidos[i].awayTeam.name;
 
-        let equipoEncontrado;
+        let equiposEncontrados;
 
-        for (let k = 0; k < datosDesplegable.length; k++){
-            if (idEquipo== datosDesplegable[k].id){
-                equipoEncontrado = datosDesplegable[k];
+        for (let k = 0; k < listaEquipos.length; k++){
+            if (nombreEquipo== listaEquipos[k].name){
+                equiposEncontrados = listaEquipos[k];
             }
         }
         
-        if (equipoEncontrado == undefined){
-            datosDesplegable.push({
-                id: idEquipo,
+        if (equiposEncontrados == undefined){
+            listaEquipos.push({
                 name: nombreEquipo,
             })
         }
     }
 
-    console.log(datosDesplegable)
+    console.log(listaEquipos)
 
 
 
-    let desplegable = document.getElementById("desplegable");
+    let objetoDesplegable = document.getElementById("desplegable");
 
-    for(let x = 0; x < datosDesplegable.length; x++){
-        let nuevaOpcion = document.createElement("option");
-        let textoOpcion = datosDesplegable[x].name;
-        nuevaOpcion.innerText = textoOpcion;
-        let idEquipoOpcion = datosDesplegable[x].id;
-        desplegable.appendChild(nuevaOpcion)
-
-        
-        let equipoDesplegable = textoOpcion;
-        console.log(equipoDesplegable)
+    for(let x = 0; x < listaEquipos.length; x++){
+        let opcionesDesplegable = document.createElement("option");
+        let textoDesplegable = listaEquipos[x].name;
+        opcionesDesplegable.innerText = textoDesplegable;
+        objetoDesplegable.appendChild(opcionesDesplegable)
     }
 }
