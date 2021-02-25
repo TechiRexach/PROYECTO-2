@@ -14,21 +14,52 @@ function hacerFetch(){
             document.getElementById("loading").style.display = "none";
             
             let partidos = data.matches;
+
+            llamarEventListener(partidos);
+            
             crearTabla(partidos);
 
             crearDesplegable(partidos);
 
-            let search = document.getElementById("botonEnviar");
-            search.addEventListener("click", function(event){
-                event.preventDefault();
-                filtros(partidos);
-                })
+            crearDesplegableJornadas(partidos);
+
+
         }).catch(error =>{
                 console.log(error);
                 alert("ERROR al cargar datos");
           })
 }
 hacerFetch()
+
+function llamarEventListener(partidos){
+
+    let searchEquipo = document.getElementById("botonEnviar");
+    searchEquipo.addEventListener("click", function(event){
+        event.preventDefault();
+        filtros(partidos);
+        })
+
+    let searchJornada = document.getElementById("botonEnviarJornadas");
+    searchJornada.addEventListener("click", function(event){
+        event.preventDefault();
+        filtroJornadas(partidos);   
+        })
+
+    let reset = document.getElementById("botonReset");
+    reset.addEventListener("click", function(event){
+        event.preventDefault();
+        document.getElementById("desplegable").value = 0;
+        document.querySelector("input[name=estadoPartido]").value = null;
+        crearTabla(partidos);
+        })
+
+    let resetJornadas = document.getElementById("botonResetJornadas");
+    resetJornadas.addEventListener("click", function(event){
+        event.preventDefault();
+        document.getElementById("desplegableJornadas").value = 0;
+        crearTabla(partidos);
+        })
+}
 
 function crearTabla(partidos, equipoDesplegable){
 
@@ -38,7 +69,7 @@ function crearTabla(partidos, equipoDesplegable){
     for (let i = 0; i < partidos.length; i++){
 
         const tr = document.createElement("tr");
-        tr.style.backgroundColor = "#c9b0a1";
+        tr.style.backgroundColor = "#a3b18a";
 
         let escudoimg = document.createElement("img");
             escudoimg.classList.add("imgteam1partidos");
@@ -73,7 +104,6 @@ function crearTabla(partidos, equipoDesplegable){
             }
 
         let jornadas = partidos[i].matchday;
-        console.log(jornadas)
 
         let datosPartidos = [
             escudoimg,
@@ -113,30 +143,30 @@ function filtros(partidos){
     }
 
     let nuevaArrayConDatosFiltrados = partidos.filter(element =>{
-
         avisoTexto.style.display = "none";
-
         return  equipoSeleccionado == element.homeTeam.name || equipoSeleccionado == element.awayTeam.name;
     })
+console.log(nuevaArrayConDatosFiltrados)
 
     if(botonSeleccion == null){
-        avisoEstado.style.display = "block";
-        crearTabla(nuevaArrayConDatosFiltrados);
+        // avisoEstado.style.display = "block";
+        crearTabla(nuevaArrayConDatosFiltrados, equipoSeleccionado);
         return nuevaArrayConDatosFiltrados;
     }
 
     let filtradoTotal = nuevaArrayConDatosFiltrados.filter(partidoFiltrado =>{
-        
+
         avisoEstado.style.display = "none";
 
-        if (botonSeleccion.value == "Todos"){
-            if (equipoSeleccionado == partidoFiltrado.homeTeam.name){
-            return true;
-        }
-            if (equipoSeleccionado == partidoFiltrado.awayTeam.name){
-                return true;
-            }
-        }
+        // if (botonSeleccion.value == null){
+
+        //     if (equipoSeleccionado == partidoFiltrado.homeTeam.name){
+        //     return true;
+        // }
+        //     if (equipoSeleccionado == partidoFiltrado.awayTeam.name){
+        //         return true;
+        //     }
+        // }
 
         if (partidoFiltrado.score.winner == "DRAW" && botonSeleccion.value == "Empatado"){
             return  true;
@@ -166,13 +196,6 @@ function filtros(partidos){
     })
 
     //cambiar de sitio//
-
-    let reset = document.getElementById("botonReset");
-    reset.addEventListener("click", function(){
-    equipoDesplegable == equipoDesplegable[0];
-    botonSeleccion == null;
-    crearTabla(partidos);
-    })
 
     crearTabla(filtradoTotal, equipoSeleccionado)
 
@@ -216,3 +239,64 @@ function crearDesplegable(data){
         objetoDesplegable.appendChild(opcionesDesplegable)
     }
 }
+
+function crearDesplegableJornadas(data){
+
+    let partidos = data;
+
+    let listaJornadas = [];
+    console.log(listaJornadas)
+
+
+    for (let i = 0; i < partidos.length; i++){
+
+        let diaJornada = partidos[i].matchday;
+        
+        let jornadasEncontradas;
+
+        for (let k = 0; k < listaJornadas.length; k++){
+            if (diaJornada == listaJornadas[k].matchday){
+                jornadasEncontradas = listaJornadas[k];
+            }
+        }
+        
+        if (jornadasEncontradas == undefined){
+            listaJornadas.push({
+                matchday: diaJornada,
+            })
+        }
+    }
+
+    let objetoDesplegableJornadas = document.getElementById("desplegableJornadas");
+
+    for(let x = 0; x < listaJornadas.length; x++){
+        let opcionesDesplegableJornada = document.createElement("option");
+        let textoDesplegable = listaJornadas[x].matchday;
+        opcionesDesplegableJornada.innerText = textoDesplegable;
+        objetoDesplegableJornadas.appendChild(opcionesDesplegableJornada)
+    }
+}
+
+function filtroJornadas(partidos){
+
+    let avisoTexto = document.getElementById("alertaTexto");
+    avisoTexto.style.display ="none";
+
+    let avisoEstado = document.getElementById("alertaEstado");
+    avisoEstado.style.display ="none";
+
+    let jornadaDesplegable = document.getElementById("desplegableJornadas");
+
+    let jornadaSeleccionada = jornadaDesplegable.options[jornadaDesplegable.selectedIndex].text;
+    console.log(jornadaSeleccionada)
+
+    let arrayJornadasFiltradas = partidos.filter(jornada =>{
+        if(jornadaSeleccionada == jornada.matchday){
+            return true
+        }
+    })
+    console.log(arrayJornadasFiltradas)
+
+    crearTabla(arrayJornadasFiltradas)
+}
+

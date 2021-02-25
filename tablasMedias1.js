@@ -60,7 +60,7 @@ function calcularEstadisticas1(data){
         // 4. Buscar en la array estadisticas el objeto con el mismo id que el homeTeam del partido
 
             let equipoEncontradoHome;
-            console.log(equipoEncontradoHome)
+            // console.log(equipoEncontradoHome)
 
             for (let k = 0; k < estadisticas.length; k++){
                 if (idEquipoHome == estadisticas[k].id){

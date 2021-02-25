@@ -29,7 +29,7 @@ function crearTabla(data){
     for (let i = 0; i < arrayTable.length; i++){
         
         const tr = document.createElement("tr");
-        tr.style.backgroundColor = "#c9b0a1";
+        tr.style.backgroundColor = "#a3b18a";
     
         let escudoimg = document.createElement("img");
             escudoimg.classList.add("imgteam1clasificacion");

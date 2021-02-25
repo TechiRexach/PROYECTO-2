@@ -34,58 +34,79 @@
     </div>
   </nav>
 
-  <form action="">
-    <div class="filtros container table-responsive">
-      <div>
-        <div class="avisoDesplegable">Escoge un equipo:</div>
-        <select id="desplegable">
-          <option value="0" disabled selected hidden>EQUIPOS</option>
-        </select>
-      </div>
-      <div class="alert alert-warning" id="alertaTexto" role="alert">
-        Por favor, selecciona el nombre de un equipo.
-      </div>
-      <div id="eligeEstadoPartido" class="filtros2">
+  <h2>ELIGE COMO QUIERES FILTRAR LOS RESULTADOS</h2>
+
+  <div class="formularios">
+    <form action="" class="formularioEquipos">
+      <div class="container table-responsive">
         <div>
-        <input type="radio" name="estadoPartido" id="partidoTodos" value="Todos" class="botonradio" checked>
-          <div>
-            <label for="partidoGanado">Todos</label>
+          <div class="desplegableEquipos">
+            <select id="desplegable">
+              <option value="0" disabled selected>EQUIPOS</option>
+            </select>
           </div>
         </div>
-        <div>
-        <input type="radio" name="estadoPartido" id="partidoGanado" value="Ganado" class="botonradio">
+        <div class="alert alert-warning" id="alertaTexto" role="alert">
+          Por favor, selecciona el nombre de un equipo.
+        </div>
+        <div id="eligeEstadoPartido" class="filtros2">
+          <!-- <div>
+          <input type="radio" name="estadoPartido" id="partidoTodos" value="Todos" class="botonradio">
+            <div>
+              <label for="partidoGanado">Todos</label>
+            </div>
+          </div> -->
           <div>
-            <label for="partidoGanado">Ganados</label>
+          <input type="radio" name="estadoPartido" id="partidoGanado" value="Ganado" class="botonradio">
+            <div>
+              <label for="partidoGanado">Ganados</label>
+            </div>
+          </div>
+          <div>
+          <input type="radio" name="estadoPartido" id="partidoEmpatado" value="Empatado" class="botonradio">
+            <div>
+              <label for="partidoEmpatado">Empatados</label>
+            </div>
+          </div>
+          <div>
+          <input type="radio" name="estadoPartido" id="partidoPerdido" value="Perdido" class="botonradio">
+            <div>
+              <label for="partidoPerdido">Perdidos</label>
+            </div>
+          </div>
+          <div>
+          <input type="radio" name="estadoPartido" id="partidoPendiente" value="Pendiente" class="botonradio">
+            <div>
+              <label for="partidoPendiente">Pendientes</label>
+            </div>
           </div>
         </div>
-        <div>
-        <input type="radio" name="estadoPartido" id="partidoEmpatado" value="Empatado" class="botonradio">
-          <div>
-            <label for="partidoEmpatado">Empatados</label>
-          </div>
+        <div class="alert alert-warning" id="alertaEstado" role="alert">
+          Escoge una opción:
         </div>
-        <div>
-        <input type="radio" name="estadoPartido" id="partidoPerdido" value="Perdido" class="botonradio">
-          <div>
-            <label for="partidoPerdido">Perdidos</label>
-          </div>
-        </div>
-        <div>
-        <input type="radio" name="estadoPartido" id="partidoPendiente" value="Pendiente" class="botonradio">
-          <div>
-            <label for="partidoPendiente">Pendientes</label>
-          </div>
+        <div class="botonesEnvioyReset">
+          <button id="botonEnviar" class="botonEnviar">BUSCAR</button>
+          <button id="botonReset" class="botonReset">Limpiar búsqueda</button>
         </div>
       </div>
-      <div class="alert alert-warning" id="alertaEstado" role="alert">
-        Escoge una opción:
+    </form>
+
+    <form action="" class="formularioJornadas">
+      <div class="container table-responsive">
+        <div>
+          <div class="desplegableJornadas">
+            <select id="desplegableJornadas">
+              <option value="0" disabled selected>JORNADAS</option>
+            </select>
+          </div>
+        </div>
+        <div class="botonesEnvioyResetJornadas">
+          <button id="botonEnviarJornadas" class="botonEnviar">BUSCAR</button>
+          <button id="botonResetJornadas" class="botonReset">Limpiar búsqueda</button>
+        </div>
       </div>
-      <div class="botonesEnvioyReset">
-        <button id="botonEnviar" class="botonEnviar">BUSCAR</button>
-        <button id="botonReset" class="botonReset">Limpiar búsqueda</button>
-      </div>
-    </div>
-  </form>
+    </form>
+  </div>
 
   <div id="loading">
   </div>
@@ -94,11 +115,9 @@
     <table class="table colorTabla table-sm" id="table">
       <thead>
         <tr>
-          <th></th>
-          <th>Local</th>
+          <th colspan="2">Local</th>
           <th>Resultado</th>
-          <th>Visitante</th>
-          <th></th>
+          <th colspan="2">Visitante</th>
           <th>Día y hora</th>
           <th>Jornada</th>
         </tr>

@@ -64,7 +64,9 @@ function calcularEstadisticas2(data){
             }
         }
 
-        estadisticas2.sort((a, b) => a.goals - b.goals)
+        //ordena primero por menor numero de goles y despues por mayor numero de partidos
+        estadisticas2.sort((a, b) => a.goals - b.goals || b.matches - a.matches);
+        
     }
 
     let top5_2 = estadisticas2.slice(0, 5)
@@ -84,7 +86,6 @@ function crearTabla2(top5_2){
         const tr = document.createElement("tr");
 
         let equipos = top5_2[i].id;
-        console.log(equipos)  
 
         let escudoimg2 = document.createElement("img");
             escudoimg2.classList.add("imgteam1clasificacion");

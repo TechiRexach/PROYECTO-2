@@ -6,7 +6,7 @@ background-color: transparent;
 }
 
 .navbarcolor{
-    background-color: #DA7635;
+    background-color: #3a5a40;
 }
 
 body{
@@ -20,7 +20,7 @@ body{
 
 thead{
     text-align: center;
-    background-color: #DA7635;
+    background-color: #588157;
 }
 #table{
     margin-top: 15px;
@@ -40,7 +40,7 @@ p{
 }
 
 .footer{
-    background-color: #DA7635;
+    background-color: #3a5a40;
     margin-top: 15px;
     height: 96px;
     display: grid;
@@ -141,11 +141,11 @@ p{
 /* ESTADISTICAS */
 
 .colorTabla1{
-    background-color: #c9b0a1;
+    background-color: #a3b18a;
 }
 
 .colorTabla2{
-    background-color: #c9b0a1;
+    background-color: #a3b18a;
 }
 
 /* HOMEPAGE */
@@ -230,18 +230,59 @@ p{
 
 /* PARTIDOS / FORMULARIO */
 
+h2{
+    margin-top: 15px;
+    text-align: center;
+}
+
+.formularios{
+    display: grid;
+    grid-template-columns: 1fr 1fr 0.2fr 1fr 1fr;
+}
+
+.formularioEquipos{
+    border: 1px solid #3a5a40;
+    margin: auto;
+    width: 600px;
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+.desplegableEquipos{
+    margin-top: 15px;
+    text-align: center;
+}
+
+#desplegable{
+    border-radius: 5px;
+    border-style: dashed;
+}
+
+.formularioJornadas{
+    border: 1px solid #3a5a40;
+    margin: auto;
+    grid-column-start: 4;
+    grid-column-end: 5;
+    width: 400px;
+    height: 149px;
+}
+
+.desplegableJornadas{
+    margin-top: 15px;
+    text-align: center;
+}
+
+#desplegableJornadas{
+    border-radius: 5px;
+    border-style: dashed;
+}
+
 .avisoDesplegable{
     font-size: x-large;
     height: max-content;
     width: max-content;
     margin: auto;
     margin-bottom: 5px;
-}
-
-.desplegable{
-    border-radius: 5px;
-    border: 0px;
-   font-family: var(--bs-font-sans-serif);
 }
 
 #alertaTexto{
@@ -257,13 +298,6 @@ p{
 
 #alertaEstado{
     display: none;
-    background-color: #f0ae62;
-    width: 180px;
-    margin: auto;
-    font-size: small;
-    margin-bottom: 15px;
-    border-color: #212529;
-    color: #212529;
 }
 
 .negrita{
@@ -280,35 +314,38 @@ p{
     justify-self: center;
 }
 
-.filtros{
-    text-align: center;
-    width: 100%;
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    margin: auto;
-    margin-top: 15px
-}
-
 .filtros2{
     margin: auto;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    text-align: center;
     width: 100%;
+    margin-top: 5px;
 }
 
 .botonesEnvioyReset{
     display: grid;
     height: 50%;
     grid-template-columns: 0.2fr 0.2fr;
-    justify-content: center;
+    justify-content: space-evenly;
     margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.botonesEnvioyResetJornadas{
+    display: grid;
+    height: 50%;
+    grid-template-columns: 0.2fr 0.2fr;
+    justify-content: space-evenly;
+    margin-top: 65px;
+    margin-bottom: 15px;
 }
 
 .botonEnviar{
     border-radius: 5px;
     width: 130px;
     margin: auto;
-    background-color: #f0ae62;
+    background-color: #a3b18a;
 }
 
 .botonReset{
@@ -316,6 +353,7 @@ p{
     font-size: smaller;
     width: 130px;
     margin: auto;
+    background-color: #dad7cd;
 }
 
 @media screen and (max-width: 667px){
@@ -332,12 +370,6 @@ p{
     }
     .imgteam2partidos{
         width: 40px;
-    }
-    .filtros{
-        width: 80%;
-        height: 400px;
-        display: grid;
-        grid-template-rows: 0.2fr 0.1fr 0fr;
     }
     .filtros2{
         display: grid;
@@ -364,7 +396,7 @@ p{
     margin: 50px auto;
     display: block;
     border: 16px solid #f3f3f3; 
-    border-top: 16px solid #f0ae62;
+    border-top: 16px solid #344e41;
     border-radius: 50%;
     width: 80px;
     height: 80px;
@@ -380,7 +412,7 @@ p{
     margin: 50px auto;
     display: block;
     border: 16px solid #f3f3f3; 
-    border-top: 16px solid #f0ae62;
+    border-top: 16px solid #344e41;
     border-radius: 50%;
     width: 80px;
     height: 80px;
@@ -392,3 +424,12 @@ p{
     100% { transform: rotate(360deg); }
   }
 
+/* ESTADISTICAS */
+
+.titulosEstadisticas{
+    text-align: center;
+    margin-top: 15px;
+    font-family: sans-serif;
+    font-weight: bolder;
+    text-decoration:underline;
+}
