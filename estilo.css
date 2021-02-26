@@ -371,13 +371,28 @@ h2{
     .imgteam2partidos{
         width: 40px;
     }
+    .formularios{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 0.5fr;    
+    }
+    .formularioEquipos{
+        width:70%;
+        grid-row-start: 1;
+        grid-column-start: 1;
+    }
+    .formularioJornadas{
+        width: 70%;
+        grid-row-start: 2;
+        grid-column-start: 1;
+    }
     .filtros2{
         display: grid;
         grid-template-rows: 1fr 1fr 1fr;
         grid-template-columns: 1fr;
         text-align: center;
         margin-top: 5px;
-        width: 100%;
+        width: 50%;
     }
     .botonesEnvioyReset{
         display: grid;
@@ -387,6 +402,12 @@ h2{
     }
     .botonReset{
         margin-top: 15px;
+    }
+    .botonesEnvioyResetJornadas{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        margin-top: 10px;
     }
 }
 
